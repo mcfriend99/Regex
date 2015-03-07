@@ -1,0 +1,2 @@
+# Regex
+With RegEx, you can find ready-made full functioning regex solutions to  many thing we usually struggle to "regex". It is a good replacement for php preg. It provides an interface to test a regex, perform match, replace, perform a deep replace, split a string, count words in a string, find  ocuurences of a regex in anything(e.g. find a url in an email),  perform a javascript-like regex.test() function.
