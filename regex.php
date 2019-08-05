@@ -2,88 +2,90 @@
 
 
 /** 
-
-RegEx 1.0.0
-
-Copyright 2015
-
-Developed by:
-Richard Mcfriend Oluwamuyiwa
-richardmcfriend@live.com
-
-
-Want to help develop this class into a mega-class,
-Email me your working regex and/or function and a 
-short working example with a subject -
-"To a Mega Regex Class".
-
-Please recommend this package to others. 
-Thanks in advance.
-
-============================================================================
-
-With RegEx, you can find ready-made full functioning regex solutions to 
-many thing we usually struggle to "regex". It is a good replacement for
-php preg. It provides an interface to test a regex, perform match, replace,
-perform a deep replace, split a string, count words in a string, find 
-ocuurences of a regex in anything(e.g. find a url in an email), 
-perform a javascript-like regex.test() function.
-
-=============================================================================
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
-
-*/
-
-
-/* 
-
-// Example
-// ========
-
-$f = new RegEx;
-
-// E.g to find all numbers in a string.
-print_r($f::find("My ID number is 234567 and I am 21 years old and my phone number is +2349020026051", $f::NUMBERS));
-
-// E.g to find all numbers and phone numbers in a string.
-print_r($f::find("My ID number is 234567 and I am 21 years old and my phone number is +2349020026051", array($f::NUMBERS, $f::PHONE)));
-echo "<br>";
-
-// E.g to match all numbers that are phone numbers in a string.
-print_r($f::match("+2349020026051", array($f::PHONE)));
-echo "<br>";
-
-// E.g to match all phone numbers that are strictly numbers in a string.
-// A "+" will cause false to be returned in this case.
-print_r($f::match("2349020026051", array($f::NUMBERS, $f::PHONE), true));
-echo "<br>";
-
-// E.g to find all numbers in a string using a customized regex.
-print_r($f::find("My ID number is 234567 and I am 21 years old and my phone number is +2349020026051", "/\d+/"));
-echo "<br>";
-
-// E.g to get error.
-print_r($f::error());
+ * 
+ * 
+ * RegEx 1.0.0
+ * 
+ * 
+ * Copyright 2015
+ * 
+ * Developed by:
+ * Richard Mcfriend Oluwamuyiwa
+ * richardmcfriend@live.com
+ * 
+ * 
+ * Want to help develop this class into a mega-class,
+ * Email me your working regex and/or function and a 
+ * short working example with a subject -
+ * "To a Mega Regex Class".
+ * 
+ * Please recommend this package to others. 
+ * Thanks in advance.
+ * 
+ * ============================================================================
+ * 
+ * With RegEx, you can find ready-made full functioning regex solutions to 
+ * many thing we usually struggle to "regex". It is a good replacement for
+ * php preg. It provides an interface to test a regex, perform match, replace,
+ * perform a deep replace, split a string, count words in a string, find 
+ * ocuurences of a regex in anything(e.g. find a url in an email), 
+ * perform a javascript-like regex.test() function.
+ * 
+ * =============================================================================
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+ * 
+ */
 
 
+/** 
+ * 
+ * // Example
+ * // ========
+ * 
+ * $f = new RegEx;
+ * 
+ * // E.g to find all numbers in a string.
+ * print_r($f::find("My ID number is 234567 and I am 21 years old and my phone number is +2349020026051", $f::NUMBERS));
+ * 
+ * // E.g to find all numbers and phone numbers in a string.
+ * print_r($f::find("My ID number is 234567 and I am 21 years old and my phone number is +2349020026051", array($f::NUMBERS, $f::PHONE)));
+ * echo "<br>";
+ * 
+ * // E.g to match all numbers that are phone numbers in a string.
+ * print_r($f::match("+2349020026051", array($f::PHONE)));
+ * echo "<br>";
+ * 
+ * // E.g to match all phone numbers that are strictly numbers in a string.
+ * // A "+" will cause false to be returned in this case.
+ * print_r($f::match("2349020026051", array($f::NUMBERS, $f::PHONE), true));
+ * echo "<br>";
+ * 
+ * // E.g to find all numbers in a string using a customized regex.
+ * print_r($f::find("My ID number is 234567 and I am 21 years old and my phone number is +2349020026051", "/\d+/"));
+ * echo "<br>";
+ * 
+ * // E.g to get error.
+ * print_r($f::error());
+ * 
+ * 
  */
 
 
@@ -310,18 +312,18 @@ class RegEx {
 		
 	}
 	
-	/* 
-	Can be called to find a particular stuff in a string.
-	string $string: string to match against
-	regex $what: what you intend to match (A regex)
-	E.g. find an email in a string of text.
-	Ex: 
-	$f = "me@mainone.com.sr/?";
-	$b = new RegEx;
-	$h = $b->find($f, $b::SPECIAL_CHARACTERS);
-	foreach($h as $m){
-		echo $m, "<br>";
-	}
+	/** 
+	 * Can be called to find a particular stuff in a string.
+	 * string $string: string to match against
+	 * regex $what: what you intend to match (A regex)
+	 * E.g. find an email in a string of text.
+	 * Ex: 
+	 * $f = "me@mainone.com.sr/?";
+	 * $b = new RegEx;
+	 * $h = $b->find($f, $b::SPECIAL_CHARACTERS);
+	 * foreach($h as $m){
+	 * 	echo $m, "<br>";
+	 * }
 	 */
 	static function find($string = null, $what = null){
 		
@@ -358,12 +360,12 @@ class RegEx {
 		
 	}
 	
-	/* 
-	Test a string against any regex.
-	string $string: string to match against
-	regex $what: what you intend to match (A regex)
-	boolean $strict: to perform a strict match.
-	Similar to javascript regex.test() method.
+	/** 
+	 * Test a string against any regex.
+	 * string $string: string to match against
+	 * regex $what: what you intend to match (A regex)
+	 * boolean $strict: to perform a strict match.
+	 * Similar to javascript regex.test() method.
 	 */
 	static function test($string, $what, $strict = false){
 		
@@ -406,13 +408,13 @@ class RegEx {
 		
 	}
 	
-	/* 
-	Matches a string against any regex.
-	string $string: string to match against
-	regex $what: what you intend to match (A regex)
-	boolean $strict: to perform a strict match.
-	Note that double counting is not allowed in match.
-	Use find() to allow double counting...
+	/** 
+	 * Matches a string against any regex.
+	 * string $string: string to match against
+	 * regex $what: what you intend to match (A regex)
+	 * boolean $strict: to perform a strict match.
+	 * Note that double counting is not allowed in match.
+	 * Use find() to allow double counting...
 	 */
 	static function match($string, $what, $strict = false){
 		
@@ -424,13 +426,13 @@ class RegEx {
 		
 	}
 	
-	/* 
-	Replaces a string matching pattern what with the replacement.
-	string $string: string to match against
-	string $replacement: string to replace matches
-	regex $what: what you intend to match (A regex)
-	boolean $strict: to perform a strict match.
-	NOTE: For a deeper replace, use the replace_deep()
+	/** 
+	 * Replaces a string matching pattern what with the replacement.
+	 * string $string: string to match against
+	 * string $replacement: string to replace matches
+	 * regex $what: what you intend to match (A regex)
+	 * boolean $strict: to perform a strict match.
+	 * NOTE: For a deeper replace, use the replace_deep()
 	 */
 	static function replace($string, $replacement, $what, $strict = false){
 		
@@ -450,13 +452,13 @@ class RegEx {
 		
 	}
 	
-	/* 
-	Enhanced replace function to replace completely all occurences of the match.
-	string $string: string to match against
-	string $replacement: string to replace matches
-	regex $what: what you intend to match (A regex)
-	boolean $strict: to perform a strict match.
-	NOTE: For a more polite replace, use the replace()
+	/** 
+	 * Enhanced replace function to replace completely all occurences of the match.
+	 * string $string: string to match against
+	 * string $replacement: string to replace matches
+	 * regex $what: what you intend to match (A regex)
+	 * boolean $strict: to perform a strict match.
+	 * NOTE: For a more polite replace, use the replace()
 	 */
 	static function replace_deep($string, $replacement, $what, $strict = false){
 		
@@ -478,11 +480,11 @@ class RegEx {
 		
 	}
 	
-	/* 
-	Just incase you you need it or are having trouble with whatever...
-	Performs a split on a string based on the match.
-	string $string: string to match against
-	regex $what: what you intend to match (A regex)
+	/** 
+	 * Just incase you you need it or are having trouble with whatever...
+	 * Performs a split on a string based on the match.
+	 * string $string: string to match against
+	 * regex $what: what you intend to match (A regex)
 	 */
 	static function split($string, $what){
 		
@@ -494,10 +496,10 @@ class RegEx {
 		
 	}
 	
-	/* 
-	Its common for people to do this.
-	Simply making it faster,
-	string $string: string to count words from
+	/** 
+	 * Its common for people to do this.
+	 * Simply making it faster,
+	 * string $string: string to count words from
 	 */
 	static function word_count($string){
 		
@@ -506,9 +508,9 @@ class RegEx {
 		
 	}
 	
-	/* 
-	Error reporting function.
-	Returns errors encountered in RegEx
+	/** 
+	 * Error reporting function.
+	 * Returns errors encountered in RegEx
 	 */
 	static function error(){
 		
